@@ -1,10 +1,9 @@
 <template>
-  <div>
-    <Game />
-  </div>
+  <div><Map></Map></div>
 </template>
 
 <script setup lang="ts">
-import Game from './components/game/Game.vue'
+import Map from './Map.vue'
 </script>
+
 <style scoped></style>
