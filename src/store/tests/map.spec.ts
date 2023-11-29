@@ -1,7 +1,19 @@
-import { describe, expect, it } from 'vitest'
+import { createPinia, setActivePinia } from 'pinia'
+import { beforeEach, describe, expect, it } from 'vitest'
+import { useMapStore } from '../map'
 
 describe('map', () => {
-  it('test', () => {
-    expect(true).toBe(true)
+  beforeEach(() => {
+    setActivePinia(createPinia())
+  })
+  it('should set map', () => {
+    const newMap = [
+      [1, 1, 1],
+      [1, 1, 1],
+      [1, 1, 1]
+    ]
+    const { map, setupMap } = useMapStore()
+    setupMap(newMap)
+    expect(map).toEqual(newMap)
   })
 })
