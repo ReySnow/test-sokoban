@@ -1,5 +1,6 @@
 import { createPinia, setActivePinia } from 'pinia'
 import { beforeEach, describe, expect, it } from 'vitest'
+import { useCargoStore } from '../cargo'
 import { useMapStore } from '../map'
 import { usePlayerStore } from '../player'
 
@@ -88,6 +89,70 @@ describe('player', () => {
       player.y = 1
       movePlayerToUp()
       expect(player.y).toBe(1)
+    })
+  })
+  describe('push a cargo', () => {
+    beforeEach(() => {
+      const { setupMap } = useMapStore()
+      setupMap([
+        [1, 1, 1, 1, 1],
+        [1, 2, 2, 2, 1],
+        [1, 2, 2, 2, 1],
+        [1, 2, 2, 2, 1],
+        [1, 1, 1, 1, 1]
+      ])
+    })
+    it('should push a cargo to left', () => {
+      const { addCarge, createCargo } = useCargoStore()
+      const cargo = createCargo({ x: 2, y: 1 })
+      addCarge(cargo)
+      const { player, movePlayerToLeft } = usePlayerStore()
+      player.x = 3
+      player.y = 1
+
+      movePlayerToLeft()
+
+      expect(player.x).toBe(2)
+      expect(cargo.x).toBe(1)
+    })
+    it('should push a cargo to right', () => {
+      const { addCarge, createCargo } = useCargoStore()
+      const cargo = createCargo({ x: 2, y: 1 })
+      addCarge(cargo)
+      const { player, movePlayerToRight } = usePlayerStore()
+      player.x = 1
+      player.y = 1
+
+      movePlayerToRight()
+
+      expect(player.x).toBe(2)
+      expect(cargo.x).toBe(3)
+    })
+    it('should push a cargo to up', () => {
+      const { addCarge, createCargo } = useCargoStore()
+      const cargo = createCargo({ x: 1, y: 2 })
+      addCarge(cargo)
+      const { player, movePlayerToUp } = usePlayerStore()
+      player.x = 1
+      player.y = 3
+
+      movePlayerToUp()
+
+      expect(player.y).toBe(2)
+      expect(cargo.y).toBe(1)
+    })
+    it('should push a cargo to down', () => {
+      const { addCarge, createCargo } = useCargoStore()
+      const cargo = createCargo({ x: 1, y: 2 })
+      addCarge(cargo)
+      const { player, movePlayerToDown } = usePlayerStore()
+      player.x = 1
+      player.y = 1
+
+      movePlayerToDown()
+
+      expect(player.y).toBe(2)
+      expect(cargo.y).toBe(3)
     })
   })
 })

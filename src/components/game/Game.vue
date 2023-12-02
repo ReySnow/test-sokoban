@@ -14,7 +14,9 @@ import Cargo from './Cargo.vue'
 import Map from './Map.vue'
 import Player from './Player.vue'
 
-const { cargos } = useCargoStore()
+const { cargos, addCarge, createCargo } = useCargoStore()
+
+addCarge(createCargo({ x: 2, y: 2 }))
 </script>
 
 <style scoped></style>
