@@ -154,5 +154,33 @@ describe('player', () => {
       expect(player.y).toBe(2)
       expect(cargo.y).toBe(3)
     })
+
+    it('should not push a cargo when collision a wall', () => {
+      const { addCarge, createCargo } = useCargoStore()
+      const cargo = createCargo({ x: 1, y: 1 })
+      addCarge(cargo)
+      const { player, movePlayerToLeft } = usePlayerStore()
+      player.x = 2
+      player.y = 1
+
+      movePlayerToLeft()
+
+      expect(player.x).toBe(2)
+      expect(cargo.x).toBe(1)
+    })
+    it('should not push a cargo when collision a cargo', () => {
+      const { addCarge, createCargo } = useCargoStore()
+      const cargo = createCargo({ x: 2, y: 1 })
+      addCarge(cargo)
+      addCarge(createCargo({ x: 3, y: 1 }))
+      const { player, movePlayerToRight } = usePlayerStore()
+      player.x = 1
+      player.y = 1
+
+      movePlayerToRight()
+
+      expect(player.x).toBe(1)
+      expect(cargo.x).toBe(2)
+    })
   })
 })

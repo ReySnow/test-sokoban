@@ -5,7 +5,7 @@ import { useMapStore } from './map'
 
 export const usePlayerStore = defineStore('player', () => {
   const { isWall } = useMapStore()
-  const { findCargo } = useCargoStore()
+  const { findCargo, moveCargo } = useCargoStore()
   const player = reactive({
     x: 1,
     y: 1
@@ -17,8 +17,8 @@ export const usePlayerStore = defineStore('player', () => {
 
     const cargo = findCargo(position)
     if (cargo) {
-      cargo.x += dx
-      cargo.y += dy
+      const isMovedCargo = moveCargo(cargo, dx, dy)
+      if (!isMovedCargo) return
     }
     player.x += dx
     player.y += dy
