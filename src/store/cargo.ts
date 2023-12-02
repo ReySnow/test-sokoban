@@ -2,17 +2,19 @@ import { Positon } from '@/composables/usePosition'
 import { defineStore } from 'pinia'
 import { reactive } from 'vue'
 import { useMapStore } from './map'
+import { useTargetStore } from './target'
 
-interface Cargo {
+export interface Cargo {
   x: number
   y: number
+  onTarget: boolean
 }
 
 export const useCargoStore = defineStore('cargo', () => {
-  const cargos: Cargo[] = reactive([])
+  const cargos = reactive<Cargo[]>([])
 
-  function createCargo({ x, y }: { x: number; y: number }) {
-    return { x, y }
+  function createCargo({ x, y }: { x: number; y: number }): Cargo {
+    return { x, y, onTarget: false }
   }
 
   function addCarge(cargo: Cargo) {
@@ -34,6 +36,12 @@ export const useCargoStore = defineStore('cargo', () => {
 
     cargo.x += dx
     cargo.y += dy
+
+    const { findTarget } = useTargetStore()
+    const isTarget = findTarget(cargo)
+
+    cargo.onTarget = !!isTarget
+
     return true
   }
 
