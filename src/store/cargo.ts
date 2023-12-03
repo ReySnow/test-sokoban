@@ -37,12 +37,14 @@ export const useCargoStore = defineStore('cargo', () => {
     cargo.x += dx
     cargo.y += dy
 
-    const { findTarget } = useTargetStore()
-    const isTarget = findTarget(cargo)
-
-    cargo.onTarget = !!isTarget
+    detectionTarget(cargo)
 
     return true
+  }
+
+  function detectionTarget(cargo: Cargo) {
+    const { findTarget } = useTargetStore()
+    cargo.onTarget = !!findTarget(cargo)
   }
 
   return {

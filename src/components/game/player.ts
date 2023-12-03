@@ -1,3 +1,4 @@
+import { useGameStore } from '@/store/game'
 import { usePlayerStore } from '@/store/player'
 import { onMounted, onUnmounted } from 'vue'
 
@@ -8,6 +9,7 @@ export function useMove() {
     movePlayerToUp,
     movePlayerToDown
   } = usePlayerStore()
+  const { detectionGameCompleted } = useGameStore()
   function handleMove(e: KeyboardEvent) {
     switch (e.key) {
       case 'ArrowUp':
@@ -23,6 +25,7 @@ export function useMove() {
         movePlayerToRight()
         break
     }
+    detectionGameCompleted()
   }
   onMounted(() => {
     window.addEventListener('keyup', handleMove)
