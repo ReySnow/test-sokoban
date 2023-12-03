@@ -56,4 +56,15 @@ describe('cargo', () => {
       expect(cargo.onTarget).toBe(false)
     })
   })
+  it('should clean all cargos', () => {
+    const { cargos, addCarge, createCargo, cleanAllCargos } = useCargoStore()
+    addCarge(
+      createCargo({
+        x: 1,
+        y: 1
+      })
+    )
+    cleanAllCargos()
+    expect(cargos.length).toBe(0)
+  })
 })

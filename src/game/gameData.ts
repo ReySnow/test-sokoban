@@ -1,5 +1,5 @@
 import type { Map } from '../store/map'
-export interface levelGameData {
+export interface LevelGameData {
   player: {
     x: number
     y: number
@@ -14,6 +14,8 @@ export interface levelGameData {
   }[]
   map: Map
 }
+
+export type GameData = LevelGameData[]
 
 export const levelGameData = {
   player: {
@@ -40,3 +42,32 @@ export const levelGameData = {
     }
   ]
 }
+
+export const gameData = [
+  levelGameData,
+  {
+    player: {
+      x: 1,
+      y: 1
+    },
+    map: [
+      [1, 1, 1, 1, 1, 1],
+      [1, 2, 2, 2, 1, 1],
+      [1, 2, 2, 2, 2, 1],
+      [1, 2, 2, 2, 2, 1],
+      [1, 1, 1, 1, 1, 1]
+    ],
+    targets: [
+      {
+        x: 3,
+        y: 2
+      }
+    ],
+    cargos: [
+      {
+        x: 2,
+        y: 2
+      }
+    ]
+  }
+]

@@ -24,10 +24,15 @@ export const useTargetStore = defineStore('target', () => {
     })
   }
 
+  function cleanAllTargets() {
+    targets.splice(0, targets.length)
+  }
+
   return {
     targets,
     addTarget,
     createTarget,
-    findTarget
+    findTarget,
+    cleanAllTargets
   }
 })

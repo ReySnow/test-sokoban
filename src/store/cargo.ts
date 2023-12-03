@@ -8,13 +8,16 @@ export interface Cargo {
   x: number
   y: number
   onTarget: boolean
+  id: number
 }
+
+let Id = 1
 
 export const useCargoStore = defineStore('cargo', () => {
   const cargos = reactive<Cargo[]>([])
 
   function createCargo({ x, y }: { x: number; y: number }): Cargo {
-    return { x, y, onTarget: false }
+    return { x, y, onTarget: false, id: Id++ }
   }
 
   function addCarge(cargo: Cargo) {
@@ -47,11 +50,15 @@ export const useCargoStore = defineStore('cargo', () => {
     cargo.onTarget = !!findTarget(cargo)
   }
 
+  function cleanAllCargos() {
+    cargos.splice(0, cargos.length)
+  }
   return {
     cargos,
     createCargo,
     addCarge,
     findCargo,
-    moveCargo
+    moveCargo,
+    cleanAllCargos
   }
 })
