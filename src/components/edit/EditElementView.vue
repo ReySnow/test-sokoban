@@ -1,6 +1,14 @@
 <template>
   <div class="p-2">
     <h3>元素选择区</h3>
+    <div class="m-2 space-y-2">
+      <div class="flex">
+        row: <input type="number" class="border border-blue-50" v-model="row" />
+      </div>
+      <div class="flex">
+        col: <input type="number" class="border border-blue-50" v-model="col" />
+      </div>
+    </div>
     <div class="flex space-x-2 m-2">
       <div>地图:</div>
       <EditElement :editElement="wallEditElement"></EditElement>
@@ -11,7 +19,11 @@
 
 <script setup lang="ts">
 import { floorEditElement, wallEditElement } from '@/store/edit/editElement'
+import { useMapEditStore } from '@/store/edit/mapEdit'
 import EditElement from './EditElement.vue'
+const { row, col, initMap } = useMapEditStore()
+
+initMap()
 </script>
 
 <style scoped></style>
