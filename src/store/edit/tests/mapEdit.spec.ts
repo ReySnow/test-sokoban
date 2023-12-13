@@ -61,4 +61,55 @@ describe('mapEdit', () => {
       `)
     })
   })
+  describe('col', () => {
+    it('should add col when increase', () => {
+      const { map, updateMapCol, setCol, initMap } = useMapEditStore()
+
+      initMap(2, 2)
+
+      setCol(4)
+
+      updateMapCol()
+
+      expect(map).toMatchInlineSnapshot(`
+        [
+          [
+            2,
+            2,
+            2,
+            2,
+          ],
+          [
+            2,
+            2,
+            2,
+            2,
+          ],
+        ]
+      `)
+    })
+    it('should remove col when decrease', () => {
+      const { map, updateMapCol, setCol, initMap } = useMapEditStore()
+
+      initMap(3, 3)
+
+      setCol(1)
+
+      updateMapCol()
+
+      expect(map).toMatchInlineSnapshot(`
+        [
+          [
+            2,
+          ],
+          [
+            2,
+          ],
+          [
+            2,
+          ],
+        ]
+      `)
+    })
+  })
 })

@@ -35,15 +35,34 @@ export const useMapEditStore = defineStore('mapEdit', () => {
       map.splice(map.length - diff, map.length)
     }
   }
+  function updateMapCol() {
+    let oldCol = map[0].length
+    if (col.value > oldCol) {
+      let diff = col.value - oldCol
+      map.forEach((row) => {
+        row.push(...new Array(diff).fill(MapTile.FLOOR))
+      })
+    } else if (col.value < oldCol) {
+      let diff = oldCol - col.value
+      map.forEach((row) => {
+        row.splice(row.length - diff, row.length)
+      })
+    }
+  }
   function setRow(value: number) {
     row.value = value
+  }
+  function setCol(value: number) {
+    col.value = value
   }
   return {
     map,
     row,
     col,
     setRow,
+    setCol,
     updateMapRow,
+    updateMapCol,
     initMap
   }
 })
