@@ -20,10 +20,16 @@
 <script setup lang="ts">
 import { floorEditElement, wallEditElement } from '@/store/edit/editElement'
 import { useMapEditStore } from '@/store/edit/mapEdit'
+import { toRefs, watchEffect } from 'vue'
 import EditElement from './EditElement.vue'
-const { row, col, initMap } = useMapEditStore()
+const { initMap, updateMapRow } = useMapEditStore()
+const { row, col } = toRefs(useMapEditStore())
 
 initMap()
+
+watchEffect(() => {
+  updateMapRow()
+})
 </script>
 
 <style scoped></style>
