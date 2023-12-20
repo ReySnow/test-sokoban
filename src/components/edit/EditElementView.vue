@@ -18,6 +18,7 @@
       <div>玩家:</div>
       <EditElement :editElement="playerEditElement"></EditElement>
     </div>
+    <div>当先选择的元素：{{ selectedEditElementName }}</div>
   </div>
 </template>
 
@@ -25,13 +26,21 @@
 import {
   floorEditElement,
   playerEditElement,
+  useEditElementStore,
   wallEditElement
 } from '@/store/edit/editElement'
 import { useMapEditStore } from '@/store/edit/mapEdit'
-import { toRefs, watchEffect } from 'vue'
+import { computed, toRefs, watchEffect } from 'vue'
 import EditElement from './EditElement.vue'
 const { initMap, updateMapRow, updateMapCol } = useMapEditStore()
 const { row, col } = toRefs(useMapEditStore())
+const { getCurrentSelectedEditElement } = useEditElementStore()
+
+const selectedEditElementName = computed(() => {
+  const element = getCurrentSelectedEditElement()
+  if (!element) return '没有选择'
+  return element.name
+})
 
 initMap()
 

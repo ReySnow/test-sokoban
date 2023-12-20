@@ -22,7 +22,7 @@ describe('editElement', () => {
 
     setCurrentSelectedEditElement(wallEditElement)
 
-    getCurrentSelectedEditElement().execute({ x: 1, y: 1 })
+    getCurrentSelectedEditElement()!.execute({ x: 1, y: 1 })
 
     expect(map[1][1]).toBe(MapTile.WALL)
   })
@@ -35,7 +35,7 @@ describe('editElement', () => {
 
     const position = { x: 1, y: 1 }
 
-    getCurrentSelectedEditElement().execute(position)
+    getCurrentSelectedEditElement()!.execute(position)
 
     expect(player.x).toBe(position.x)
     expect(player.y).toBe(position.y)
