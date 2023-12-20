@@ -5,12 +5,14 @@ export interface Positon {
   y: number
 }
 
-export function usePositon(pos: Positon) {
-  const STEP = 32
+export const STEP_GAME = 32
+export const STEP_EDIT = 34
+
+export function usePositon(pos: Positon, step: number = STEP_GAME) {
   const position = computed(() => {
     return {
-      left: pos.x * STEP + 'px',
-      top: pos.y * STEP + 'px'
+      left: pos.x * step + 'px',
+      top: pos.y * step + 'px'
     }
   })
   return { position }

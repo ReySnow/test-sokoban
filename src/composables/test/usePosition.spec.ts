@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { reactive } from 'vue'
-import { usePositon } from '../usePosition'
+import { STEP_EDIT, usePositon } from '../usePosition'
 
 describe('usePositon', () => {
   // 一个测试只做一件事
@@ -13,6 +13,17 @@ describe('usePositon', () => {
     expect(position.value).toEqual({
       left: '32px',
       top: '32px'
+    })
+  })
+  it('should set positon step', () => {
+    const pos = {
+      x: 1,
+      y: 1
+    }
+    const { position } = usePositon(pos, STEP_EDIT)
+    expect(position.value).toEqual({
+      left: '34px',
+      top: '34px'
     })
   })
   it('should update positon when reactive data change', () => {

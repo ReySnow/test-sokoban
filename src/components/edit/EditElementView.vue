@@ -14,11 +14,19 @@
       <EditElement :editElement="wallEditElement"></EditElement>
       <EditElement :editElement="floorEditElement"></EditElement>
     </div>
+    <div class="flex space-x-2 m-2">
+      <div>玩家:</div>
+      <EditElement :editElement="playerEditElement"></EditElement>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { floorEditElement, wallEditElement } from '@/store/edit/editElement'
+import {
+  floorEditElement,
+  playerEditElement,
+  wallEditElement
+} from '@/store/edit/editElement'
 import { useMapEditStore } from '@/store/edit/mapEdit'
 import { toRefs, watchEffect } from 'vue'
 import EditElement from './EditElement.vue'

@@ -3,6 +3,7 @@
     <div class="flex">
       <div class="w-4/6 bg-purple-400">
         <MapEdit />
+        <EditPlayer />
       </div>
       <div>数据展示</div>
     </div>
@@ -14,6 +15,7 @@
 
 <script setup lang="ts">
 import EditElementView from '@/components/edit/EditElementView.vue'
+import EditPlayer from '@/components/edit/EditPlayer.vue'
 import MapEdit from '@/components/edit/MapEdit.vue'
 </script>
 
