@@ -1,3 +1,4 @@
+import cargoImg from '@/assets/cargo.png'
 import floorImg from '@/assets/floor.png'
 import playerImg from '@/assets/keeper.png'
 import wallImg from '@/assets/wall.png'
@@ -5,6 +6,7 @@ import { Positon } from '@/composables/usePosition'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { MapTile } from '../map'
+import { useEditCargoStore } from './editCargo'
 import { useEditPlayerStore } from './editPlayer'
 import { useMapEditStore } from './mapEdit'
 
@@ -39,6 +41,15 @@ export const playerEditElement: EditElement = {
     const { player } = useEditPlayerStore()
     player.x = position.x
     player.y = position.y
+  }
+}
+
+export const cargoEditElement: EditElement = {
+  name: '箱子',
+  img: cargoImg,
+  execute: (position) => {
+    const { createCargo, addCarge } = useEditCargoStore()
+    addCarge(createCargo(position))
   }
 }
 export const useEditElementStore = defineStore('editElement', () => {

@@ -18,12 +18,17 @@
       <div>玩家:</div>
       <EditElement :editElement="playerEditElement"></EditElement>
     </div>
+    <div class="flex space-x-2 m-2">
+      <div>箱子:</div>
+      <EditElement :editElement="cargoEditElement"></EditElement>
+    </div>
     <div>当先选择的元素：{{ selectedEditElementName }}</div>
   </div>
 </template>
 
 <script setup lang="ts">
 import {
+  cargoEditElement,
   floorEditElement,
   playerEditElement,
   useEditElementStore,

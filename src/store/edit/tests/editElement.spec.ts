@@ -1,7 +1,9 @@
 import { MapTile } from '@/store/map'
 import { createPinia, setActivePinia } from 'pinia'
 import { beforeEach, describe, expect, it } from 'vitest'
+import { useEditCargoStore } from '../editCargo'
 import {
+  cargoEditElement,
   playerEditElement,
   useEditElementStore,
   wallEditElement
@@ -39,5 +41,19 @@ describe('editElement', () => {
 
     expect(player.x).toBe(position.x)
     expect(player.y).toBe(position.y)
+  })
+  it('should add a cargo when current selected elment is cargo', () => {
+    const { getCurrentSelectedEditElement, setCurrentSelectedEditElement } =
+      useEditElementStore()
+    const { cargos } = useEditCargoStore()
+
+    setCurrentSelectedEditElement(cargoEditElement)
+
+    const position = { x: 1, y: 1 }
+
+    getCurrentSelectedEditElement()!.execute(position)
+
+    expect(cargos[0].x).toBe(position.x)
+    expect(cargos[0].y).toBe(position.y)
   })
 })
