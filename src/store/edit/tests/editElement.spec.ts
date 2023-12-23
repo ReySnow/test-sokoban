@@ -5,10 +5,12 @@ import { useEditCargoStore } from '../editCargo'
 import {
   cargoEditElement,
   playerEditElement,
+  targetEditElement,
   useEditElementStore,
   wallEditElement
 } from '../editElement'
 import { useEditPlayerStore } from '../editPlayer'
+import { useEditTargetStore } from '../editTarget'
 import { useMapEditStore } from '../mapEdit'
 
 describe('editElement', () => {
@@ -55,5 +57,19 @@ describe('editElement', () => {
 
     expect(cargos[0].x).toBe(position.x)
     expect(cargos[0].y).toBe(position.y)
+  })
+  it('should add a target when current selected elment is target', () => {
+    const { getCurrentSelectedEditElement, setCurrentSelectedEditElement } =
+      useEditElementStore()
+    const { targets } = useEditTargetStore()
+
+    setCurrentSelectedEditElement(targetEditElement)
+
+    const position = { x: 1, y: 1 }
+
+    getCurrentSelectedEditElement()!.execute(position)
+
+    expect(targets[0].x).toBe(position.x)
+    expect(targets[0].y).toBe(position.y)
   })
 })

@@ -22,6 +22,10 @@
       <div>箱子:</div>
       <EditElement :editElement="cargoEditElement"></EditElement>
     </div>
+    <div class="flex space-x-2 m-2">
+      <div>放置点:</div>
+      <EditElement :editElement="targetEditElement"></EditElement>
+    </div>
     <div>当先选择的元素：{{ selectedEditElementName }}</div>
   </div>
 </template>
@@ -31,6 +35,7 @@ import {
   cargoEditElement,
   floorEditElement,
   playerEditElement,
+  targetEditElement,
   useEditElementStore,
   wallEditElement
 } from '@/store/edit/editElement'

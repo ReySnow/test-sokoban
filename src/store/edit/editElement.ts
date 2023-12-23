@@ -1,6 +1,7 @@
 import cargoImg from '@/assets/cargo.png'
 import floorImg from '@/assets/floor.png'
 import playerImg from '@/assets/keeper.png'
+import targetImg from '@/assets/target.png'
 import wallImg from '@/assets/wall.png'
 import { Positon } from '@/composables/usePosition'
 import { defineStore } from 'pinia'
@@ -8,6 +9,7 @@ import { ref } from 'vue'
 import { MapTile } from '../map'
 import { useEditCargoStore } from './editCargo'
 import { useEditPlayerStore } from './editPlayer'
+import { useEditTargetStore } from './editTarget'
 import { useMapEditStore } from './mapEdit'
 
 export interface EditElement {
@@ -52,6 +54,15 @@ export const cargoEditElement: EditElement = {
     addCarge(createCargo(position))
   }
 }
+export const targetEditElement: EditElement = {
+  name: '放置点',
+  img: targetImg,
+  execute: (position) => {
+    const { createTarget, addTarget } = useEditTargetStore()
+    addTarget(createTarget(position))
+  }
+}
+
 export const useEditElementStore = defineStore('editElement', () => {
   const currentSelectEditElement = ref<EditElement>()
   function getCurrentSelectedEditElement() {
