@@ -11,7 +11,7 @@
           <EditTarget :target="target" />
         </template>
       </div>
-      <div>数据展示</div>
+      <DataDisplayer />
     </div>
     <div>
       <EditElementView />
@@ -20,6 +20,7 @@
 </template>
 
 <script setup lang="ts">
+import DataDisplayer from '@/components/edit/DataDisplayer.vue'
 import EditCargo from '@/components/edit/EditCargo.vue'
 import EditElementView from '@/components/edit/EditElementView.vue'
 import EditPlayer from '@/components/edit/EditPlayer.vue'
